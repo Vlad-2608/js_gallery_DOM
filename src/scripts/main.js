@@ -6,16 +6,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   thumbsContainer.addEventListener('click', (evt) => {
     const target = evt.target;
-    const clickedElement =
-      target.tagName === 'IMG' ? target.parentNode : target;
+    const anchorElement = target.closest('a');
 
-    if (clickedElement.tagName === 'A' && clickedElement.hasAttribute('href')) {
+    if (anchorElement && anchorElement.hasAttribute('href')) {
       evt.preventDefault();
 
-      const newImageSrc = clickedElement.getAttribute('href');
+      const newImageSrc = anchorElement.getAttribute('href');
 
       largeImg.src = newImageSrc;
-      largeImg.alt = clickedElement.getAttribute('title');
+      largeImg.alt = anchorElement.getAttribute('title');
     }
   });
 });
